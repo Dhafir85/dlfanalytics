@@ -7,20 +7,8 @@ Welcome to the repository for **DLF Analytics**, a modern developer portfolio an
 - **🧠 Rich Layouts**: Structured templates for projects, blog posts, and bio.
 - **📱 Responsive Design**: Fully responsive across mobile, tablet, and desktop devices.
 
-## Running Locally
+## Live Website
 
-To run the development server locally, open your terminal and run:
 
-```bash
-hugo server --disableFastRender
-```
+visit us at **https://dhafir85.github.io/dlfanalytics/**
 
-Then visit **http://localhost:1313** in your browser.
-
-## Deployment
-
-The website can be built for production using:
-
-```bash
-hugo --minify
-```
