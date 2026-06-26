@@ -1,0 +1,36 @@
+# Hugo Blox
+# Social sharing links
+# Docs: https://docs.hugoblox.com/reference/page-sharer/
+
+links:
+  - id: x
+    url: 'https://x.com/intent/tweet?url={url}&text={title}'
+    title: X
+    icon: brands/x
+    enable: true
+  - id: facebook
+    url: 'https://www.facebook.com/sharer.php?u={url}&t={title}'
+    title: Facebook
+    icon: brands/facebook
+    enable: true
+  - id: linkedin
+    url: 'https://www.linkedin.com/shareArticle?url={url}&title={title}'
+    title: LinkedIn
+    icon: brands/linkedin
+    enable: true
+  - id: whatsapp
+    url: 'whatsapp://send?text={title}%20{url}'
+    title: WhatsApp
+    icon: brands/whatsapp
+    enable: true
+  - id: email
+    url: 'mailto:?subject={title}&body={url}'
+    title: Email
+    icon: envelope
+    icon_pack: fas
+    enable: true
+  - id: telegram
+    url: 'https://telegram.me/share/url?url={url}&text={title}'
+    title: Telegram
+    icon: brands/telegram
+    enable: true
