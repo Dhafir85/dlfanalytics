@@ -1,0 +1,42 @@
+/* Custom CSS Overrides */
+
+/* Add safe-area padding at the top of the header for mobile status bars/notches */
+#site-header {
+  padding-top: env(safe-area-inset-top);
+  background-color: var(--color-header-bg, #ffffff);
+}
+
+/* Ensure the navbar brand logo aligns nicely and has spacing from the text */
+.navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navbar-brand img {
+  height: 32px;
+  width: auto;
+  border-radius: 50%; /* Makes the circular logo look clean and crisp */
+  vertical-align: middle;
+}
+
+/* Spacing and safe area adjustments on mobile screens */
+@media (max-width: 1023px) {
+  #site-header {
+    padding-top: max(0.5rem, env(safe-area-inset-top));
+    padding-bottom: 0.5rem;
+  }
+
+  #site-header .navbar {
+    padding-left: max(1.25rem, env(safe-area-inset-left)) !important;
+    padding-right: max(1.25rem, env(safe-area-inset-right)) !important;
+  }
+
+  /* Spacing for mobile menu and search icons */
+  #site-header label[for="nav-toggle"] {
+    margin-left: 0.5rem;
+    padding: 0.25rem;
+    display: inline-flex;
+    align-items: center;
+  }
+}
