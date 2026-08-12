@@ -1,0 +1,40 @@
+{{/* DLF Analytics: service grid block */}}
+{{ $page := .wcPage }}
+{{ $block := .wcBlock }}
+{{ $content := $block.content }}
+
+<section class="dlf-services" aria-labelledby="dlf-services-title">
+  <div class="dlf-shell">
+    <header class="dlf-section-intro">
+      {{ with index $content "eyebrow" }}
+        <p class="dlf-eyebrow">{{ . }}</p>
+      {{ end }}
+      {{ with index $content "title" }}
+        <h2 id="dlf-services-title">{{ . | emojify | $page.RenderString }}</h2>
+      {{ end }}
+      {{ with index $content "text" }}
+        <div class="dlf-section-lead">{{ . | emojify | $page.RenderString }}</div>
+      {{ end }}
+    </header>
+
+    <div class="dlf-service-grid">
+      {{ range $index, $item := index $content "items" }}
+        {{ $accent := index $item "accent" | default "blue" }}
+        <article class="dlf-service dlf-service--{{ $accent }}">
+          <span class="dlf-service-number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+          <div>
+            <h3>{{ index $item "title" }}</h3>
+            <p>{{ index $item "text" }}</p>
+          </div>
+        </article>
+      {{ end }}
+    </div>
+
+    <div class="dlf-method-line" aria-label="Our working principles">
+      <span>Question-led</span>
+      <span>Reproducible</span>
+      <span>Transparent</span>
+      <span>Publication-ready</span>
+    </div>
+  </div>
+</section>

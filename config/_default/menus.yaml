@@ -3,12 +3,15 @@
 #   The weight parameter defines the order that the links appear.
 
 main:
+  - name: Services
+    url: /#services
+    weight: 10
   - name: Portfolio
     url: /#portfolio
-    weight: 10
+    weight: 20
   - name: Toolkit
     url: /#toolkit
-    weight: 20
+    weight: 30
   - name: Contact
     url: /#contact
     weight: 50

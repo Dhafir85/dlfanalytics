@@ -11,8 +11,8 @@ design:
 sections:
   - block: collection
     content:
-      title: Selected Projects
-      text: I enjoy making things. Here are a selection of projects that I have worked on over the years.
+      title: Biomedical Analysis Case Studies
+      text: Reproducible examples showing how data, methods, and interpretation come together. Projects marked “In development” are reserved for work that will be documented as it is completed.
       filters:
         folders:
           - portfolio

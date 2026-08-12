@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@10.14.0",
-  "description": "Modern developer portfolio template for Hugo Blox with Tailwind CSS v4 - Free version",
+  "description": "DLF Analytics biomedical data analysis and computational research website",
   "scripts": {
     "dev": "hugo server --disableFastRender",
     "build": "hugo --minify && pnpm run pagefind",

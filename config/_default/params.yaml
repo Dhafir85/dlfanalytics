@@ -17,14 +17,13 @@ hugoblox:
     # Legal entity for copyright notices (defaults to name if not set)
     organization: ""
     # Schema.org type for structured data
-    type: person                        # person | organization | local_business
+    type: organization                  # person | organization | local_business
     # Short tagline displayed on your site
-    tagline: "Full-Stack Developer"
+    tagline: "Biomedical Data Analysis & Computational Research"
     # Site meta description for search engines and social sharing
-    description: "Modern developer portfolio showcasing web development projects, technical blog posts, and open source contributions. Built with Hugo Blox."
+    description: "DLF Analytics provides reproducible biostatistics, bioinformatics, bioimage analysis, molecular docking, and molecular dynamics support for biomedical research."
     # Social accounts (used for meta tags like Twitter Cards)
-    social:
-      twitter: "yourusername"              # Twitter/X handle for Twitter Cards (without @)
+    social: {}
 
   # ────────────────────────────────────────────────────────────────────────────
   # THEME
@@ -70,7 +69,7 @@ hugoblox:
   # ────────────────────────────────────────────────────────────────────────────
   layout:
     # Border radius: 'none', 'sm', 'md', 'lg', or 'full'
-    radius: "md"
+    radius: "sm"
     # Spacing density: 'compact', 'comfortable', or 'spacious'
     spacing: "comfortable"
     # Avatar shape in author profiles
@@ -175,7 +174,11 @@ hugoblox:
   search:
     enable: true
     # Trending/suggested search terms
-    suggestions: []
+    suggestions:
+      - Biostatistics
+      - Bioinformatics
+      - Bioimage analysis
+      - Molecular dynamics
     # Quick action shortcuts in search modal
     quick_actions: []
 

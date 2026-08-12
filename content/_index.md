@@ -10,7 +10,7 @@ design:
   spacing: '0'
 
 sections:
-  # Developer Hero - Gradient background with name, role, social, and CTAs
+  # Primary introduction
   - block: dev-hero
     id: hero
     content:
@@ -30,10 +30,10 @@ sections:
         delete_speed: 40
         pause_time: 2500
       cta_buttons:
-        - text: View My Work
-          url: "#portfolio"
+        - text: Explore Our Services
+          url: "#services"
           icon: arrow-down
-        - text: Get In Touch
+        - text: Discuss a Project
           url: "#contact"
           icon: envelope
     design:
@@ -45,14 +45,47 @@ sections:
           light: "#fafafa"
           dark: "#0a0a0f"
       spacing:
-        padding: ["6rem", "0", "4rem", "0"]
+        padding: ["7rem", "0", "5rem", "0"]
+
+  # Services
+  - block: service-grid
+    id: services
+    content:
+      eyebrow: "Capabilities"
+      title: "From complex data to defensible evidence"
+      text: "Focused computational support for biomedical researchers—from study design and statistical modeling to reproducible analysis and publication-ready outputs."
+      items:
+        - title: "Biostatistics"
+          text: "Study design, hypothesis testing, regression, survival analysis, longitudinal models, and clear statistical reporting."
+          accent: "blue"
+        - title: "Bioinformatics"
+          text: "Reproducible workflows for genomic and transcriptomic data, functional interpretation, and pathway-level insight."
+          accent: "green"
+        - title: "Bioimage Analysis"
+          text: "Quantitative workflows for microscopy and pathology images using reproducible segmentation, measurement, and quality control."
+          accent: "purple"
+        - title: "Molecular Docking"
+          text: "Structure preparation, virtual screening, binding-pose assessment, and transparent ranking of candidate ligands."
+          accent: "orange"
+        - title: "Molecular Dynamics"
+          text: "Simulation setup, trajectory analysis, stability assessment, and interpretable structural summaries."
+          accent: "red"
+        - title: "Research Reporting"
+          text: "Publication-ready figures, tables, methods, and auditable reports designed for review and reuse."
+          accent: "yellow"
+    design:
+      background:
+        color:
+          light: "#ffffff"
+      spacing:
+        padding: ["5rem", "0", "5rem", "0"]
   
-  # Filterable Portfolio - Alpine.js powered project filtering
+  # Project portfolio
   - block: portfolio
     id: portfolio
     content:
-      title: "Portfolio"
-      subtitle: ""
+      title: "Selected Work"
+      subtitle: "A growing collection of reproducible biomedical analysis case studies."
       count: 0
       filters:
         folders:
@@ -68,17 +101,17 @@ sections:
       columns: 3
       background:
         color:
-          light: "#ffffff"
+          light: "#f7f7f6"
           dark: "#0d0d12"
       spacing:
-        padding: ["4rem", "0", "4rem", "0"]
+        padding: ["5rem", "0", "5rem", "0"]
   
   # Visual Tech Stack - Icons organized by category
   - block: tech-stack
     id: toolkit
     content:
       title: "Analytical Toolkit"
-      subtitle: "The industry-standard tools driving our robust and reproducible biomedical data analysis and structural biology services."
+      subtitle: "Established tools selected to match the scientific question—not the other way around."
       categories:
         - name: Bioinformatics & Statistics
           items:
@@ -132,7 +165,7 @@ sections:
           light: "#f5f5f5"
           dark: "#08080c"
       spacing:
-        padding: ["4rem", "0", "4rem", "0"]
+        padding: ["5rem", "0", "5rem", "0"]
   
 
   # Recent Blog Posts
@@ -164,10 +197,10 @@ sections:
     id: contact
     content:
       title: Get In Touch
-      subtitle: "Let's build something amazing together"
+      subtitle: "Tell us about your research question"
       text: |-
-        I'm always interested in hearing about new projects and opportunities.
-        Whether you're looking to hire, collaborate, or just want to say hi, feel free to reach out!
+        Share your research objective, data type, current stage, and expected output.
+        We will respond with focused next steps and any questions needed to define the analytical scope.
       email: analyticsdlf@gmail.com
       autolink: true
     design:
@@ -177,5 +210,5 @@ sections:
           light: "#ffffff"
           dark: "#0d0d12"
       spacing:
-        padding: ["4rem", "0", "4rem", "0"]
+        padding: ["5rem", "0", "5rem", "0"]
 ---
