@@ -5,10 +5,7 @@
 
 <section class="dlf-services" aria-labelledby="dlf-services-title">
   <div class="dlf-shell">
-    <header class="dlf-section-intro">
-      {{ with index $content "eyebrow" }}
-        <p class="dlf-eyebrow">{{ . }}</p>
-      {{ end }}
+    <header class="dlf-section-intro dlf-section-intro--centered">
       {{ with index $content "title" }}
         <h2 id="dlf-services-title">{{ . | emojify | $page.RenderString }}</h2>
       {{ end }}
@@ -18,10 +15,13 @@
     </header>
 
     <div class="dlf-service-grid">
+      {{ $icons := slice "hero/chart-bar" "hero/circle-stack" "hero/eye" "hero/cube" }}
       {{ range $index, $item := index $content "items" }}
-        {{ $accent := index $item "accent" | default "blue" }}
-        <article class="dlf-service dlf-service--{{ $accent }}">
-          <span class="dlf-service-number" aria-hidden="true">{{ printf "%02d" (add $index 1) }}</span>
+        {{ $icon := index $icons $index }}
+        <article class="dlf-service">
+          <span class="dlf-service-icon" aria-hidden="true">
+            {{ partial "functions/get_icon" (dict "name" $icon "attributes" "class=\"dlf-service-icon-svg\"") }}
+          </span>
           <div>
             <h3>{{ index $item "title" }}</h3>
             <p>{{ index $item "text" }}</p>
@@ -30,11 +30,5 @@
       {{ end }}
     </div>
 
-    <div class="dlf-method-line" aria-label="Our working principles">
-      <span>Question-led</span>
-      <span>Reproducible</span>
-      <span>Transparent</span>
-      <span>Publication-ready</span>
-    </div>
   </div>
 </section>

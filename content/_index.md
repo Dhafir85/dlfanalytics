@@ -42,8 +42,8 @@ sections:
       animations: true
       background:
         color:
-          light: "#fafafa"
-          dark: "#0a0a0f"
+          light: "#ffffff"
+          dark: "#ffffff"
       spacing:
         padding: ["7rem", "0", "5rem", "0"]
 
@@ -51,28 +51,17 @@ sections:
   - block: service-grid
     id: services
     content:
-      eyebrow: "Capabilities"
-      title: "From complex data to defensible evidence"
+      title: "Capabilities"
       text: "Focused computational support for biomedical researchers—from study design and statistical modeling to reproducible analysis and publication-ready outputs."
       items:
         - title: "Biostatistics"
           text: "Study design, hypothesis testing, regression, survival analysis, longitudinal models, and clear statistical reporting."
-          accent: "blue"
         - title: "Bioinformatics"
           text: "Reproducible workflows for genomic and transcriptomic data, functional interpretation, and pathway-level insight."
-          accent: "green"
         - title: "Bioimage Analysis"
           text: "Quantitative workflows for microscopy and pathology images using reproducible segmentation, measurement, and quality control."
-          accent: "purple"
-        - title: "Molecular Docking"
-          text: "Structure preparation, virtual screening, binding-pose assessment, and transparent ranking of candidate ligands."
-          accent: "orange"
-        - title: "Molecular Dynamics"
-          text: "Simulation setup, trajectory analysis, stability assessment, and interpretable structural summaries."
-          accent: "red"
-        - title: "Research Reporting"
-          text: "Publication-ready figures, tables, methods, and auditable reports designed for review and reuse."
-          accent: "yellow"
+        - title: "Molecular Docking & Dynamics"
+          text: "Structure preparation, virtual screening, binding-pose assessment, simulation setup, trajectory analysis, and transparent stability summaries."
     design:
       background:
         color:
@@ -101,8 +90,8 @@ sections:
       columns: 3
       background:
         color:
-          light: "#f7f7f6"
-          dark: "#0d0d12"
+          light: "#ffffff"
+          dark: "#ffffff"
       spacing:
         padding: ["5rem", "0", "5rem", "0"]
   
@@ -118,7 +107,7 @@ sections:
             - name: R
               icon: custom/r
             - name: Python
-              icon: custom/python
+              icon: custom/python_color
             - name: GraphPad Prism
               icon: custom/prism
             - name: KNIME
@@ -137,6 +126,8 @@ sections:
               icon: custom/cellprofiler_analyst
             - name: Ilastik
               icon: custom/ilastik
+            - name: ImageJ
+              icon: custom/imagej
         - name: Structural Biology
           items:
             - name: GROMACS
@@ -162,8 +153,8 @@ sections:
       show_levels: false
       background:
         color:
-          light: "#f5f5f5"
-          dark: "#08080c"
+          light: "#ffffff"
+          dark: "#ffffff"
       spacing:
         padding: ["5rem", "0", "5rem", "0"]
   
@@ -188,7 +179,7 @@ sections:
   #     background:
   #       color:
   #         light: "#f5f5f5"
-  #         dark: "#08080c"
+  #         dark: "#ffffff"
   #     spacing:
   #       padding: ["4rem", "0", "4rem", "0"]
   
@@ -208,7 +199,7 @@ sections:
       background:
         color:
           light: "#ffffff"
-          dark: "#0d0d12"
+          dark: "#ffffff"
       spacing:
         padding: ["5rem", "0", "5rem", "0"]
 ---

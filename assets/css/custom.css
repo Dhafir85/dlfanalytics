@@ -35,6 +35,20 @@ h4,
   letter-spacing: -0.015em;
 }
 
+/* Normalize display headings to DLF ink instead of template gray scales. */
+#hero h1,
+#hero h1 span,
+.blox-portfolio h2,
+.blox-tech-stack h2,
+.blox-contact-info h2,
+.dlf-section-intro h2 {
+  color: var(--dlf-ink) !important;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: var(--dlf-ink) !important;
+}
+
 ::selection {
   color: var(--dlf-ink);
   background: var(--dlf-yellow);
@@ -77,8 +91,66 @@ h4,
 }
 
 /* Service block */
+#hero .home-section-bg {
+  background-color: var(--dlf-canvas) !important;
+}
+
+/* Give the hero a shorter lead-in while keeping its content spacious. */
+#hero {
+  padding-top: 2.5rem !important;
+  padding-bottom: 5rem !important;
+}
+
+#hero > .relative {
+  min-height: auto !important;
+  padding-top: 2.5rem !important;
+  padding-bottom: 0 !important;
+}
+
+/* Keep the hero plain white and remove the template's decorative light orbs. */
+#hero .dark\:hidden {
+  display: none !important;
+}
+
+/* The brand mark is a simple square image with no circular frame or shadow. */
+#hero [class*="ring-4"] {
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+#hero [class*="ring-4"] img {
+  border-radius: 0 !important;
+}
+
 .dlf-services {
   background: var(--dlf-canvas);
+}
+
+/* White-canvas section markers: structure without introducing new backgrounds. */
+#services,
+#portfolio,
+#toolkit,
+#contact {
+  border-top: 4px solid var(--dlf-blue);
+}
+
+#services {
+  padding-top: 8rem !important;
+  padding-bottom: 8rem !important;
+}
+
+#portfolio,
+#toolkit,
+#contact {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+#portfolio > div:not(.home-section-bg),
+#toolkit > div:not(.home-section-bg),
+#contact > div:not(.home-section-bg) {
+  padding-top: 8rem !important;
+  padding-bottom: 8rem !important;
 }
 
 .dlf-shell {
@@ -93,6 +165,15 @@ h4,
   align-items: end;
   padding-bottom: 3rem;
   border-bottom: 1px solid var(--dlf-rule);
+}
+
+.dlf-section-intro--centered {
+  display: block;
+  max-width: 54rem;
+  margin: 0 auto;
+  padding-bottom: 1rem;
+  border-bottom: 0;
+  text-align: center;
 }
 
 .dlf-eyebrow {
@@ -113,6 +194,22 @@ h4,
   line-height: 0.98;
 }
 
+.dlf-section-intro--centered .dlf-eyebrow {
+  margin: 0 0 1.25rem;
+}
+
+.dlf-section-intro--centered h2 {
+  max-width: none;
+  font-size: clamp(1.875rem, 4vw, 2.25rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.dlf-section-intro--centered .dlf-section-lead {
+  max-width: 48rem;
+  margin: 1.25rem auto 0;
+}
+
 .dlf-section-lead {
   color: var(--dlf-muted);
   font-size: clamp(1rem, 1.6vw, 1.25rem);
@@ -126,43 +223,39 @@ h4,
 .dlf-service-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 3rem;
+  margin-top: 2.5rem;
 }
 
 .dlf-service {
   --service-accent: var(--dlf-blue);
-  display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: 1.25rem;
-  min-height: 15rem;
-  padding: 2.5rem 2rem 2.5rem 0;
-  border-bottom: 1px solid var(--dlf-rule);
+  display: block;
+  min-height: 13rem;
+  padding: 2rem 0;
 }
 
 .dlf-service:nth-child(odd) {
-  padding-right: 3rem;
-  border-right: 1px solid var(--dlf-rule);
+  padding-right: 0;
 }
 
 .dlf-service:nth-child(even) {
-  padding-left: 3rem;
+  padding-left: 0;
 }
 
-.dlf-service--green { --service-accent: var(--dlf-green); }
-.dlf-service--purple { --service-accent: var(--dlf-purple); }
-.dlf-service--orange { --service-accent: var(--dlf-orange); }
-.dlf-service--red { --service-accent: var(--dlf-red); }
-.dlf-service--yellow { --service-accent: var(--dlf-yellow); }
-
-.dlf-service-number {
+.dlf-service-icon {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  color: var(--dlf-ink);
-  background: var(--service-accent);
-  font-size: 0.85rem;
-  font-weight: 800;
+  justify-content: flex-start;
+  width: 2rem;
+  height: 2rem;
+  margin-bottom: 1.15rem;
+  color: var(--dlf-blue);
+  background: transparent;
+}
+
+.dlf-service-icon-svg {
+  width: 2rem;
+  height: 2rem;
 }
 
 .dlf-service h3 {
@@ -177,26 +270,6 @@ h4,
   color: var(--dlf-muted);
   font-size: 1rem;
   line-height: 1.7;
-}
-
-.dlf-method-line {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  margin-top: 3rem;
-  background: var(--dlf-ink);
-  color: #fff;
-}
-
-.dlf-method-line span {
-  padding: 1.1rem 1.25rem;
-  border-right: 1px solid rgba(255, 255, 255, 0.22);
-  font-size: 0.88rem;
-  font-weight: 600;
-  text-align: center;
-}
-
-.dlf-method-line span:last-child {
-  border-right: 0;
 }
 
 .site-footer {
@@ -252,15 +325,4 @@ h4,
     border-right: 0;
   }
 
-  .dlf-method-line {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .dlf-method-line span:nth-child(2) {
-    border-right: 0;
-  }
-
-  .dlf-method-line span:nth-child(-n + 2) {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
-  }
 }
