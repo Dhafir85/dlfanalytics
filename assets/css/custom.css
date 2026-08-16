@@ -304,6 +304,82 @@ h4,
 }
 
 @media (max-width: 767px) {
+  /* Keep every hero element inside the mobile safe area. */
+  #hero {
+    overflow-x: clip;
+    padding-top: 1.5rem !important;
+    padding-bottom: 4rem !important;
+  }
+
+  #hero > .relative {
+    padding-top: 0 !important;
+  }
+
+  #hero > .relative > .relative {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 2rem 1.25rem 2.5rem !important;
+  }
+
+  #hero .mb-8 {
+    margin-bottom: 1.5rem;
+  }
+
+  #hero [class*="w-32"][class*="h-32"] {
+    width: 7rem !important;
+    height: 7rem !important;
+  }
+
+  #hero h1 {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    font-size: clamp(2rem, 10vw, 2.5rem) !important;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+    white-space: normal;
+  }
+
+  #hero h1 + p {
+    max-width: 22rem;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    font-size: clamp(1.125rem, 5.2vw, 1.35rem) !important;
+    line-height: 1.35;
+  }
+
+  #hero h1 + p + p {
+    max-width: 22rem;
+    margin-bottom: 1.75rem;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* Seven social links become a centered 4 + 3 arrangement. */
+  #hero .flex.items-center.justify-center.gap-4.mb-10 {
+    flex-wrap: wrap;
+    max-width: 15rem;
+    margin-right: auto;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    gap: 0.75rem;
+  }
+
+  #hero .flex.flex-wrap.justify-center.gap-4 {
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  #hero .flex.flex-wrap.justify-center.gap-4 > a {
+    justify-content: center;
+    width: min(100%, 18rem);
+    padding: 0.875rem 1.25rem;
+    font-size: 1rem;
+  }
+
   .dlf-section-intro {
     grid-template-columns: 1fr;
     gap: 1.5rem;
