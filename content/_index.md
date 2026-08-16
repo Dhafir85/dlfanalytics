@@ -16,6 +16,8 @@ sections:
     content:
       username: me
       greeting: ""
+      tagline: "Biomedical Data Analysis & Computational Research"
+      bio: "We transform complex clinical, omics, imaging, and structural data into rigorous, reproducible, publication-ready evidence."
       show_status: false
       show_scroll_indicator: false
       typewriter:

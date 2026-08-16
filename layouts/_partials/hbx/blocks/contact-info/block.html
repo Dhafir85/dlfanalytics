@@ -13,6 +13,11 @@
 {{/* Enable Alpine.js for copy-to-clipboard functionality */}}
 {{ $page.Store.Set "has_alpine" true }}
 
+{{ $is_arabic := eq site.Language.Lang "ar" }}
+{{ $copy_prompt := cond $is_arabic "انقر لنسخ البريد الإلكتروني" "Click to copy" }}
+{{ $copy_success := cond $is_arabic "تم النسخ إلى الحافظة!" "Copied to clipboard!" }}
+{{ $follow_title := cond $is_arabic "تابعنا على" (i18n "block_contact_follow_me" | default "Find me on") }}
+
 {{ $default_title := i18n "block_contact_title" | default "Contact Us" }}
 {{ $title := $default_title }}
 {{ $title_raw := index $content "title" }}
@@ -325,7 +330,7 @@
               </a>
               <button @click="navigator.clipboard.writeText({{ . | jsonify }}); copied = true; setTimeout(() => copied = false, 2000)"
                       class="text-left focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-lg">
-                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">Click to copy</p>
+                <p class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">{{ $copy_prompt }}</p>
                 <p class="text-lg font-medium text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">{{ . }}</p>
               </button>
             </div>
@@ -340,7 +345,7 @@
               x-transition:leave-end="opacity-0 translate-y-1"
               class="absolute left-0 -bottom-10 px-3 py-1.5 bg-emerald-500/90 text-white text-sm font-medium rounded-lg shadow-lg"
             >
-              ✓ Copied to clipboard!
+              ✓ {{ $copy_success }}
             </div>
           </div>
           
@@ -363,7 +368,7 @@
         {{/* Right: Social Links */}}
         {{ if gt (len $filtered_social) 0 }}
         <div class="flex flex-col justify-center items-center md:items-start md:px-2">
-          <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-5 md:mt-12">{{ i18n "block_contact_follow_me" | default "Find me on" }}</h4>
+          <h4 class="text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-5 md:mt-12">{{ $follow_title }}</h4>
           <div class="flex flex-row flex-wrap gap-4">
             {{ range $filtered_social }}
             {{ $social_url := index . "url" }}
@@ -433,7 +438,7 @@
           {{/* Social Media */}}
           {{ if gt (len $filtered_social) 0 }}
           <div class="pt-4 border-t border-gray-200 dark:border-white/10">
-            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">{{ i18n "block_contact_follow_me" | default "Find me on" }}</h4>
+            <h4 class="font-semibold text-gray-900 dark:text-white mb-4">{{ $follow_title }}</h4>
             <div class="flex flex-wrap gap-3">
               {{ range $filtered_social }}
               {{ $social_url := index . "url" }}

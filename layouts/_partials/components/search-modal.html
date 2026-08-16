@@ -1,0 +1,148 @@
+{{ $is_arabic := eq site.Language.Lang "ar" }}
+{{ $placeholder := cond $is_arabic "ابحث في الموقع..." "Search the site..." }}
+{{ $suggestions_title := cond $is_arabic "عمليات بحث مقترحة" "Suggested searches" }}
+{{ $searching_text := cond $is_arabic "جارٍ البحث..." "Searching..." }}
+{{ $no_results_text := cond $is_arabic "لم نعثر على نتائج" "No results found" }}
+{{ $clear_text := cond $is_arabic "مسح البحث" "Clear search" }}
+{{ $close_text := cond $is_arabic "إغلاق البحث" "Close search" }}
+
+<div
+  x-data="dlfSearchModal()"
+  x-show="$store.search.open"
+  @keydown.escape.window="$store.search.open = false"
+  @keydown.cmd.k.window.prevent="$store.search.open = !$store.search.open"
+  @keydown.ctrl.k.window.prevent="$store.search.open = !$store.search.open"
+  x-cloak
+  class="fixed inset-0 z-[100] bg-black/50 backdrop-blur-sm"
+  style="display: none;"
+>
+  <div class="absolute inset-0" @click="$store.search.open = false"></div>
+
+  <div class="relative mx-auto mt-[10vh] max-w-3xl">
+    <div class="mx-4 overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-gray-900/10">
+      <div class="flex items-center gap-3 border-b border-gray-200 px-4 py-3">
+        <svg class="h-5 w-5 flex-shrink-0 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+        </svg>
+        <input
+          x-ref="searchInput"
+          x-model="query"
+          @input.debounce.300ms="search()"
+          type="search"
+          placeholder="{{ $placeholder }}"
+          aria-label="{{ $placeholder }}"
+          class="min-w-0 flex-1 bg-transparent text-lg text-gray-900 outline-none placeholder:text-gray-400"
+          autocomplete="off"
+        >
+        <svg x-show="loading" class="h-5 w-5 flex-shrink-0 animate-spin text-primary-600" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+        <button
+          @click="$store.search.open = false"
+          aria-label="{{ $close_text }}"
+          class="flex-shrink-0 rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-700"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+
+      <div class="max-h-[65vh] overflow-y-auto">
+        {{ $suggestions := site.Params.hugoblox.search.suggestions }}
+        {{ with $suggestions }}
+          <div x-show="!query" class="p-6">
+            <h2 class="mb-3 text-sm font-semibold text-gray-600">{{ $suggestions_title }}</h2>
+            <div class="flex flex-wrap gap-2">
+              {{ range . }}
+                <button
+                  @click="query = {{ . | jsonify }}; search()"
+                  class="rounded-full bg-primary-100 px-4 py-2 text-sm font-medium text-gray-800 transition-colors hover:bg-primary-200"
+                >{{ . }}</button>
+              {{ end }}
+            </div>
+          </div>
+        {{ end }}
+
+        <div x-show="query && loading" class="px-6 py-12 text-center text-gray-600">
+          {{ $searching_text }}
+        </div>
+
+        <div x-show="query && results.length > 0 && !loading" class="divide-y divide-gray-200">
+          <template x-for="result in results" :key="result.id">
+            <a :href="result.url" @click="$store.search.open = false" class="block px-6 py-4 transition-colors hover:bg-gray-50">
+              <h2 class="mb-2 text-lg font-semibold text-gray-900" x-html="result.meta.title || result.meta.pageTitle"></h2>
+              <p class="line-clamp-2 text-sm text-gray-600" x-html="result.excerpt"></p>
+            </a>
+          </template>
+        </div>
+
+        <div x-show="query && searched && results.length === 0 && !loading" class="px-6 py-12 text-center">
+          <h2 class="text-lg font-semibold text-gray-900">{{ $no_results_text }}</h2>
+          <button @click="query = ''; searched = false; $refs.searchInput.focus()" class="mt-4 font-medium text-primary-700 hover:text-primary-800">
+            {{ $clear_text }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function dlfSearchModal() {
+    return {
+      query: '',
+      results: [],
+      loading: false,
+      searched: false,
+      pagefind: null,
+      async init() {
+        try {
+          this.pagefind = await import(window.hbb?.assetPaths?.pagefind ?? '/pagefind/pagefind.js');
+          await this.pagefind.init();
+        } catch (error) {
+          console.error('Search could not be initialized:', error);
+        }
+        this.$watch('$store.search.open', (open) => {
+          if (open) {
+            this.$nextTick(() => this.$refs.searchInput?.focus());
+            document.body.style.overflow = 'hidden';
+          } else {
+            document.body.style.overflow = '';
+            this.query = '';
+            this.results = [];
+            this.searched = false;
+          }
+        });
+      },
+      async search() {
+        const term = this.query.trim();
+        if (!term) {
+          this.results = [];
+          this.searched = false;
+          return;
+        }
+        if (!this.pagefind) return;
+        this.loading = true;
+        try {
+          const response = await this.pagefind.search(term);
+          this.results = await Promise.all(response.results.slice(0, 10).map(async (item) => {
+            const data = await item.data();
+            return { id: data.url, url: data.url, meta: data.meta, excerpt: data.excerpt };
+          }));
+        } catch (error) {
+          console.error('Search failed:', error);
+          this.results = [];
+        } finally {
+          this.loading = false;
+          this.searched = true;
+        }
+      }
+    };
+  }
+
+  document.addEventListener('alpine:init', () => {
+    Alpine.store('search', { open: false });
+  });
+</script>

@@ -8,10 +8,8 @@ name:
 postnominals: []
 status:
   icon: "🔬"
-role: Biomedical Data Analysis & Computational Research
 email: analyticsdlf@gmail.com
-bio: |
-  We transform complex clinical, omics, imaging, and structural data into rigorous, reproducible, publication-ready evidence.
+# The homepage provides localized role and biography copy.
 
 affiliations: []
 

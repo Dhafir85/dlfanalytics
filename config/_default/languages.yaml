@@ -5,18 +5,38 @@
 # Default language
 en:
   locale: en-US
-  # Uncomment for multi-lingual sites, and move English content into `en` sub-folder.
-  #contentDir: content/en
+  languageName: English
+  weight: 1
 
-# Uncomment the lines below to configure your website in a second language.
-#zh:
-#  languageCode: zh-Hans
-#  contentDir: content/zh
-#  title: Chinese website title...
-#  params:
-#    description: Site description in Chinese...
-#  menu:
-#    main:
-#      - name: 传
-#        url: '#about'
-#        weight: 1
+ar:
+  languageCode: ar
+  locale: ar
+  languageDirection: rtl
+  languageName: العربية
+  title: DLF Analytics
+  weight: 2
+  params:
+    description: تحليل البيانات الطبية الحيوية والبحث الحاسوبي
+    hugoblox:
+      header:
+        search: true
+      search:
+        suggestions:
+          - الإحصاء الحيوي
+          - المعلوماتية الحيوية
+          - تحليل الصور الحيوية
+          - الديناميكيات الجزيئية
+  menu:
+    main:
+      - name: الخدمات
+        url: '#services'
+        weight: 10
+      - name: الأعمال
+        url: '#portfolio'
+        weight: 20
+      - name: أدوات التحليل
+        url: '#toolkit'
+        weight: 30
+      - name: تواصل معنا
+        url: '#contact'
+        weight: 40

@@ -1,0 +1,19 @@
+{{ $page := .page }}
+{{ $class := .class }}
+{{ $str_languages := T "languages" }}
+
+{{- if $page.IsTranslated -}}
+  {{- with index $page.Translations 0 -}}
+    <div class="flex justify-items-start {{ with $class }}{{ . | safeCSS }}{{ end }}">
+      <a
+        href="{{ .RelPermalink }}"
+        title="{{ $str_languages }}"
+        aria-label="{{ $str_languages }}: {{ index site.Data.languages .Lang }}"
+        class="dlf-language-switch h-7 rounded-md px-2 text-xs font-medium text-gray-600 transition-colors dark:text-gray-400 hover:bg-gray-100 hover:text-gray-900 dark:hover:bg-primary-100/5 dark:hover:text-gray-50 inline-flex items-center gap-2"
+      >
+        {{- partial "functions/get_icon" (dict "name" "globe-alt" "attributes" "height=18") -}}
+        <span>{{ index site.Data.languages .Lang }}</span>
+      </a>
+    </div>
+  {{- end -}}
+{{- end -}}

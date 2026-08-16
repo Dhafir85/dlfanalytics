@@ -35,6 +35,49 @@ h4,
   letter-spacing: -0.015em;
 }
 
+/* Arabic pages use true RTL flow while preserving centered compositions. */
+html[dir="rtl"] body {
+  direction: rtl;
+  text-align: right;
+}
+
+html[dir="rtl"] h1,
+html[dir="rtl"] h2,
+html[dir="rtl"] h3,
+html[dir="rtl"] h4,
+html[dir="rtl"] .navbar-brand {
+  letter-spacing: 0;
+}
+
+html[dir="rtl"] #hero,
+html[dir="rtl"] #toolkit > div:not(.home-section-bg),
+html[dir="rtl"] #contact > div:not(.home-section-bg),
+html[dir="rtl"] .site-footer {
+  text-align: center;
+}
+
+html[dir="rtl"] .dlf-service,
+html[dir="rtl"] #contact .grid {
+  text-align: right;
+}
+
+html[dir="rtl"] #contact button {
+  text-align: right;
+}
+
+/* Keep the brand lockup anchored on the left in both languages. */
+html[dir="rtl"] #site-header .navbar {
+  direction: ltr;
+}
+
+html[dir="rtl"] #site-header .navbar-nav {
+  direction: rtl;
+}
+
+html[dir="rtl"] #site-header .navbar-brand {
+  direction: ltr;
+}
+
 /* Normalize display headings to DLF ink instead of template gray scales. */
 #hero h1,
 #hero h1 span,
@@ -296,10 +339,18 @@ h4,
 
   /* Spacing for mobile menu and search icons */
   #site-header label[for="nav-toggle"] {
-    margin-left: 0.5rem;
+    margin-left: 0;
     padding: 0.25rem;
     display: inline-flex;
     align-items: center;
+  }
+
+  .dlf-language-switch {
+    padding-inline: 0.375rem;
+  }
+
+  .dlf-language-switch span {
+    display: none;
   }
 }
 
